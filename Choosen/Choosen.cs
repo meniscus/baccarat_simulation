@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace Choosen
 {
@@ -143,8 +144,6 @@ namespace Choosen
 
         public void Execute(BetPrice betPrice)
         {
-            // TODO もうちょっといい乱数がいいかどうか
-            var ran = new Random();
             var totalEventCost = 0d;
             var tryCount = 1000000;
             var gameCountDic = new Dictionary<int, int>();
@@ -157,48 +156,51 @@ namespace Choosen
 
                 while (true)
                 {
-                    var isWin = false;
                     cost -= betPrice.TotalBet;
+                    var reward = 0.0;
                     gameCount++;
 
-                    var index = ran.Next(0, BattleBox.Count);
+                    var index = RandomNumberGenerator.GetInt32(BattleBox.Count);
+                    
                     var result = this.BattleBox[index];
 
                     if (result == ResultType.BankerWin)
                     {
-                        isWin = true;
-                        cost += betPrice.Banker * 1.95;
+                        reward += betPrice.Banker * Constants.GAME_ODDS.BANKER;
+                    }
+
+                    if (result == ResultType.PlayerWin)
+                    {
+                        reward += betPrice.Player * Constants.GAME_ODDS.PLAYER;
                     }
 
                     if (result == ResultType.Tie)
                     {
-                        isWin = true;
-                        cost += betPrice.Banker + betPrice.Player;
-                        cost += betPrice.Tie * 8;
+                        reward += betPrice.Banker + betPrice.Player + betPrice.Tie * Constants.GAME_ODDS.TIE;
                     }
 
-                    index = ran.Next(0, OptionalBox.Count);
+                    index = RandomNumberGenerator.GetInt32(OptionalBox.Count);
                     var opResult1 = this.OptionalBox[index];
-                    index = ran.Next(0, OptionalBox.Count);
+                    index = RandomNumberGenerator.GetInt32(OptionalBox.Count);
                     var opResult2 = this.OptionalBox[index];
 
                     if (opResult1 == OptionalResultType.BankerPair)
                     {
-                        isWin = true;
-                        cost += betPrice.BankerPair * 12;
+                        reward += betPrice.BankerPair * Constants.GAME_ODDS.BANKER_PAIR;
                     }
 
                     if (opResult2 == OptionalResultType.BankerPair)
                     {
-                        isWin = true;
-                        cost += betPrice.PlayerPair * 12;
+                        reward += betPrice.PlayerPair * Constants.GAME_ODDS.BANKER_PAIR;
                     }
 
-
-                    if (isWin)
+                    if (betPrice.TotalBet < reward)
                     {
+                        // 勝利
                         consecutiveWinsCount += 1;
                     }
+
+                    cost += reward;
 
                     var logStr = $"{result} {opResult1} {opResult2} 連勝数:{consecutiveWinsCount} 収支:{cost}";
                     //Console.WriteLine(logStr);
@@ -209,7 +211,6 @@ namespace Choosen
                     }
                 }
 
-                //var resultStr = string.Format("★{0}連勝達成 プレイ収支:{1} イベント収支:{2}", FINISH_CONSECUTIVE_WINS_COUNT, cost, cost + 50);
                 var resultStr = $"★{FINISH_CONSECUTIVE_WINS_COUNT}連勝達成 ゲーム数:{gameCount} プレイ収支:{cost} イベント収支:{cost + betPrice.TotalBet * 5}";
                 //Console.WriteLine(resultStr);
                 totalEventCost += cost + betPrice.TotalBet * 5;
@@ -231,11 +232,7 @@ namespace Choosen
             {
                 Console.WriteLine($"{kvp.Key}ゲーム : {kvp.Value}");
             }
-
-        //battleBox
-
-
-    }
+        }
 
     }
 }

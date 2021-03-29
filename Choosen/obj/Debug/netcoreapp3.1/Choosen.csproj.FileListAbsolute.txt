@@ -9,3 +9,14 @@ C:\Users\yoshida\source\repos\Choosen\Choosen\bin\Debug\netcoreapp3.1\Choosen.dl
 C:\Users\yoshida\source\repos\Choosen\Choosen\bin\Debug\netcoreapp3.1\Choosen.pdb
 C:\Users\yoshida\source\repos\Choosen\Choosen\obj\Debug\netcoreapp3.1\Choosen.dll
 C:\Users\yoshida\source\repos\Choosen\Choosen\obj\Debug\netcoreapp3.1\Choosen.pdb
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.exe
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.deps.json
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.runtimeconfig.json
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.runtimeconfig.dev.json
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.dll
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\bin\Debug\netcoreapp3.1\Choosen.pdb
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\obj\Debug\netcoreapp3.1\Choosen.csprojAssemblyReference.cache
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\obj\Debug\netcoreapp3.1\Choosen.AssemblyInfoInputs.cache
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\obj\Debug\netcoreapp3.1\Choosen.AssemblyInfo.cs
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\obj\Debug\netcoreapp3.1\Choosen.dll
+C:\Users\yoshida\source\repos\Choosen\baccarat_simulation\Choosen\obj\Debug\netcoreapp3.1\Choosen.pdb
